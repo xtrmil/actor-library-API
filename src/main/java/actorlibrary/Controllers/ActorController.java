@@ -20,6 +20,10 @@ public class ActorController {
 
     @Autowired
     private ActorRepository repository;
+    @GetMapping("/")
+    String hello(){
+        return "Hello Hello";
+    }
 
     @GetMapping("/api/v1/actor/all")
     public ResponseEntity<CommonResponse> getAllActors(HttpServletRequest request) {
