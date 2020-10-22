@@ -109,10 +109,10 @@ public class ActorController {
             repository.save(actor);
 
             cr.data = actor;
-            cr.message = "Updated author with id: " + actor.id;
+            cr.message = "Updated actor with id: " + actor.id;
             resp = HttpStatus.OK;
         } else {
-            cr.message = "Author not found with id: " + id;
+            cr.message = "Actor not found with id: " + id;
             resp = HttpStatus.NOT_FOUND;
         }
         cmd.setResult(resp);
