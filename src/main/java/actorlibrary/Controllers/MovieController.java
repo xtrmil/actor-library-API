@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @RestController
+@RequestMapping(value = "/api/v1")
 public class MovieController {
 
 
