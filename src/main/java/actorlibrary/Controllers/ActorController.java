@@ -2,9 +2,7 @@ package actorlibrary.Controllers;
 
 import actorlibrary.Models.Actor;
 import actorlibrary.Models.CommonResponse;
-import actorlibrary.Models.Movie;
 import actorlibrary.Repositories.ActorRepository;
-import actorlibrary.Repositories.MovieRepository;
 import actorlibrary.Utils.Command;
 import actorlibrary.Utils.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Optional;
 
 //import com.mashape.unirest.http.HttpResponse;
