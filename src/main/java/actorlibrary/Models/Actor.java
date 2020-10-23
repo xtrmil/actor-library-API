@@ -5,14 +5,12 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+
 import javax.persistence.*;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
-
 @Entity
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -35,12 +33,15 @@ public class Actor {
     @Column
     public URL imdbURL;
 
-//    @JsonGetter("books")
-//    public List<String> movies() {
-//        return books.stream()
-//                .map(movie -> {
-//                    return "/book/" + book.id;
-//                }).collect(Collectors.toList());
-//    }
+    @JsonGetter("movies")
+    public List<String> actors() {
+        return movies.stream()
+                .map(movie-> {
+                    return "/movies/" + movie.id;
+                }).collect(Collectors.toList());
+    }
+
+    @ManyToMany(mappedBy = "actors",fetch=FetchType.LAZY)
+    public Set<Movie> movies = new HashSet<Movie>();
 
 }

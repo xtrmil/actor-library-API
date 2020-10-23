@@ -2,27 +2,33 @@ package actorlibrary.Controllers;
 
 import actorlibrary.Models.Actor;
 import actorlibrary.Models.CommonResponse;
+import actorlibrary.Models.Movie;
 import actorlibrary.Repositories.ActorRepository;
 import actorlibrary.Utils.Command;
 import actorlibrary.Utils.Logger;
+
+import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Optional;
 
-//import com.mashape.unirest.http.HttpResponse;
-//import com.mashape.unirest.http.Unirest;
-//import com.google.gson.Gson;
-//import com.google.gson.GsonBuilder;
-//import com.google.gson.JsonElement;
-//import com.google.gson.JsonParser;
+import com.mashape.unirest.http.HttpResponse;
+
+import com.mashape.unirest.http.Unirest;
+
+
 
 
 @RestController
 public class ActorController {
+
+
+
 
     public static void main(String[]args) throws Exception{
 
@@ -42,7 +48,7 @@ public class ActorController {
         return "Hello Hello";
     }
 
-    @GetMapping("/api/v1/actor/all")
+    @GetMapping("/actor/all")
     public ResponseEntity<CommonResponse> getAllActors(HttpServletRequest request) {
         Command cmd = new Command(request);
 
@@ -57,14 +63,13 @@ public class ActorController {
 
         HttpStatus resp = HttpStatus.OK;
 
-
         cmd.setResult(resp);
         Logger.getInstance().logCommand(cmd);
         return new ResponseEntity<>(cr, resp);
 
     }
 
-    @GetMapping("/api/v1/actor/{id}")
+    @GetMapping("/actor/{id}")
     public ResponseEntity<CommonResponse> getActorById(HttpServletRequest request, @PathVariable("id") Integer id) {
         Command cmd = new Command(request);
 
@@ -87,7 +92,7 @@ public class ActorController {
         return new ResponseEntity<>(cr, resp);
     }
 
-    @PostMapping("api/v1/actor")
+    @PostMapping("/actor")
     public ResponseEntity<CommonResponse> addActor(HttpServletRequest request, HttpServletResponse response, @RequestBody Actor actor) {
         Command cmd = new Command(request);
 
@@ -106,7 +111,7 @@ public class ActorController {
         return new ResponseEntity<>(cr, resp);
     }
 
-    @PatchMapping("api/v1/actor/{id}")
+    @PatchMapping("/actor/{id}")
     public ResponseEntity<CommonResponse> updateAuthor(HttpServletRequest request, @RequestBody Actor newActor, @PathVariable Integer id) {
         Command cmd = new Command(request);
 
@@ -144,32 +149,8 @@ public class ActorController {
         Logger.getInstance().logCommand(cmd);
         return new ResponseEntity<>(cr, resp);
     }
-    @GetMapping
-    public ResponseEntity<CommonResponse> getMovieById(HttpServletRequest request, @PathVariable("id") Integer id) {
-        Command cmd = new Command(request);
 
-
-
-        //process
-        CommonResponse cr = new CommonResponse();
-        HttpStatus resp;
-
-        if (repository.existsById(id)) {
-            cr.data = repository.findById(id);
-            cr.message = "Author with id: " + id;
-            resp = HttpStatus.OK;
-        } else {
-            cr.data = null;
-            cr.message = "Author not found";
-            resp = HttpStatus.NOT_FOUND;
-        }
-
-        cmd.setResult(resp);
-        Logger.getInstance().logCommand(cmd);
-        return new ResponseEntity<>(cr, resp);
-    }
-
-    @DeleteMapping("api/v1/actor/{id}")
+    @DeleteMapping("/actor/{id}")
     public ResponseEntity<CommonResponse> deleteActor(HttpServletRequest request, @PathVariable Integer id) {
         Command cmd = new Command(request);
 
@@ -190,22 +171,95 @@ public class ActorController {
         return new ResponseEntity<>(cr, resp);
     }
 
-//    public static void getActorsMovies(String imdbUrl) throws Exception{
+    @GetMapping("/actor/{id}/movies")
+    public ResponseEntity<CommonResponse> getMoviesbyAuthor(HttpServletRequest request, @PathVariable("id") Integer id){
+        Command cmd = new Command(request);
+
+        //process
+        CommonResponse cr = new CommonResponse();
+        HttpStatus resp;
+
+        if(repository.existsById(id)) {
+            Optional<Actor> authorRepo = repository.findById(id);
+            Actor actor = authorRepo.get();
+            cr.data = actor.movies;
+            cr.message = "Books by author with id: " + id;
+            resp = HttpStatus.OK;
+        } else {
+            cr.data = null;
+            cr.message = "Author not found";
+            resp = HttpStatus.NOT_FOUND;
+        }
+
+        //log and return
+        cmd.setResult(resp);
+        Logger.getInstance().logCommand(cmd);
+        return new ResponseEntity<>(cr, resp);
+    }
+
+//    @GetMapping
+//    public ResponseEntity<CommonResponse> getMovieById(HttpServletRequest request, @PathVariable("id") Integer id) {
+//        Command cmd = new Command(request);
+
+//        CommonResponse cr = new CommonResponse();
+//        HttpStatus resp;
+//
+//        if (repository.existsById(id)) {
+//            cr.data = repository.findById(id);
+//            cr.message = "Author with id: " + id;
+//            resp = HttpStatus.OK;
+//        } else {
+//            cr.data = null;
+//            cr.message = "Author not found";
+//            resp = HttpStatus.NOT_FOUND;
+//        }
+//
+//        cmd.setResult(resp);
+//        Logger.getInstance().logCommand(cmd);
+//        return new ResponseEntity<>(cr, resp);
+//    }
+
+//    public static void getActorsMovies(String imdbUrl) throws UnirestException {
 //        ArrayList<Movie> allMovies = new ArrayList<>();
-//        String querry = "https://rapidapi.p.rapidapi.com/actors/get-all-filmography?nconst=" +imdbUrl.substring(26,35);
+//        String q = imdbUrl.substring(26,35);
+//        String host = "https://rapidapi.p.rapidapi.com/actors/get-all-filmography?nconst="+imdbUrl;
 //
 //
-//        HttpResponse<String> response = Unirest.get(querry)
+//        HttpResponse<String> response = Unirest.get(host)
 //                .header("x-rapidapi-host", "imdb8.p.rapidapi.com")
 //                .header("x-rapidapi-key", "3ff559fc9dmsh90e7d601c0dcaa5p15bf2djsnd7c89f0e1067")
 //                .asString();
-//        //Prettifying
-//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//        JsonParser jp = new JsonParser();
-//        JsonElement je = jp.parse(response.getBody().toString());
-//        String prettyJsonString = gson.toJson(je);
-//        System.out.println(prettyJsonString);
 //
+//        System.out.println(response);
 //    }
+    @GetMapping("/actor/movies")
+    public ResponseEntity<CommonResponse> getActorsMovies(HttpServletRequest request, @PathVariable("id") Integer id) throws UnirestException {
+        Command cmd = new Command(request);
 
+        //process
+        CommonResponse cr = new CommonResponse();
+        HttpStatus resp;
+        String host = "https://rapidapi.p.rapidapi.com/actors/get-all-filmography?nconst="+"nm0000216";
+                HttpResponse<String> response = Unirest.get(host)
+                .header("x-rapidapi-host", "imdb8.p.rapidapi.com")
+                .header("x-rapidapi-key", "3ff559fc9dmsh90e7d601c0dcaa5p15bf2djsnd7c89f0e1067")
+                .asString();
+
+        System.out.println(response);
+        resp = HttpStatus.OK;
+
+//        if (repository.existsById(id)) {
+//            cr.data = repository.findById(id);
+//            cr.message = "Author with id: " + id;
+//            resp = HttpStatus.OK;
+//        } else {
+//            cr.data = null;
+//            cr.message = "Author not found";
+//            resp = HttpStatus.NOT_FOUND;
+//        }
+//
+//        cmd.setResult(resp);
+//        Logger.getInstance().logCommand(cmd);
+        return new ResponseEntity<>(cr, resp);
+    }
 }
