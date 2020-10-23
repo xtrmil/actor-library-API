@@ -30,7 +30,7 @@ public class ActorController {
 
     public static void main(String[]args) throws Exception{
 
-        getActorsMovies("https://www.imdb.com/name/nm0000216/");
+//        getActorsMovies("https://www.imdb.com/name/nm0000216/");
 
 
     }
@@ -190,22 +190,22 @@ public class ActorController {
         return new ResponseEntity<>(cr, resp);
     }
 
-    public static void getActorsMovies(String imdbUrl) throws Exception{
-        ArrayList<Movie> allMovies = new ArrayList<>();
-        String querry = "https://rapidapi.p.rapidapi.com/actors/get-all-filmography?nconst=" +imdbUrl.substring(26,35);
-
-
-        HttpResponse<String> response = Unirest.get(querry)
-                .header("x-rapidapi-host", "imdb8.p.rapidapi.com")
-                .header("x-rapidapi-key", "3ff559fc9dmsh90e7d601c0dcaa5p15bf2djsnd7c89f0e1067")
-                .asString();
-        //Prettifying
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        JsonParser jp = new JsonParser();
-        JsonElement je = jp.parse(response.getBody().toString());
-        String prettyJsonString = gson.toJson(je);
-        System.out.println(prettyJsonString);
-
-    }
+//    public static void getActorsMovies(String imdbUrl) throws Exception{
+//        ArrayList<Movie> allMovies = new ArrayList<>();
+//        String querry = "https://rapidapi.p.rapidapi.com/actors/get-all-filmography?nconst=" +imdbUrl.substring(26,35);
+//
+//
+//        HttpResponse<String> response = Unirest.get(querry)
+//                .header("x-rapidapi-host", "imdb8.p.rapidapi.com")
+//                .header("x-rapidapi-key", "3ff559fc9dmsh90e7d601c0dcaa5p15bf2djsnd7c89f0e1067")
+//                .asString();
+//        //Prettifying
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//        JsonParser jp = new JsonParser();
+//        JsonElement je = jp.parse(response.getBody().toString());
+//        String prettyJsonString = gson.toJson(je);
+//        System.out.println(prettyJsonString);
+//
+//    }
 
 }
