@@ -19,11 +19,10 @@ import java.util.*;
 @RestController
 public class MovieController {
 
-    @Autowired
-    private MovieRepository movieRepository;
+
 
     @Autowired
-    private ActorRepository actorRepository;
+    private MovieRepository movieRepository;
 
     @GetMapping("/movie/all")
     public ResponseEntity<CommonResponse> getAllMovies(HttpServletRequest request){
@@ -32,7 +31,7 @@ public class MovieController {
         //process
         CommonResponse cr = new CommonResponse();
         cr.data = movieRepository.findAll();
-        cr.message = "All movies";
+        cr.message = "All Movies";
 
         HttpStatus resp = HttpStatus.OK;
 
@@ -41,7 +40,6 @@ public class MovieController {
         Logger.getInstance().logCommand(cmd);
         return new ResponseEntity<>(cr, resp);
     }
-
     @GetMapping("/movie/{id}")
     public ResponseEntity<CommonResponse> getMovieById(HttpServletRequest request, @PathVariable Integer id){
         Command cmd = new Command(request);
@@ -79,7 +77,7 @@ public class MovieController {
             Movie movie = movieRepo.get();
 
             movie.title = newMovie.title;
-            movie.productionYear = newMovie.productionYear;
+            movie.releaseYear = newMovie.releaseYear;
             movie.genre = newMovie.genre;
 
             movie.actors = new HashSet<Actor>();

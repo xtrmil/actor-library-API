@@ -2,40 +2,24 @@ package actorlibrary.Controllers;
 
 import actorlibrary.Models.Actor;
 import actorlibrary.Models.CommonResponse;
-import actorlibrary.Models.Movie;
 import actorlibrary.Repositories.ActorRepository;
 import actorlibrary.Utils.Command;
 import actorlibrary.Utils.Logger;
 
-import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
+
 import java.util.Optional;
-
-import com.mashape.unirest.http.HttpResponse;
-
-import com.mashape.unirest.http.Unirest;
-
-
 
 
 @RestController
 public class ActorController {
 
 
-
-
-    public static void main(String[]args) throws Exception{
-
-//        getActorsMovies("https://www.imdb.com/name/nm0000216/");
-
-
-    }
 
     @Autowired
     private ActorRepository repository;
@@ -232,34 +216,52 @@ public class ActorController {
 //
 //        System.out.println(response);
 //    }
-    @GetMapping("/actor/movies")
-    public ResponseEntity<CommonResponse> getActorsMovies(HttpServletRequest request, @PathVariable("id") Integer id) throws UnirestException {
-        Command cmd = new Command(request);
-
-        //process
-        CommonResponse cr = new CommonResponse();
-        HttpStatus resp;
-        String host = "https://rapidapi.p.rapidapi.com/actors/get-all-filmography?nconst="+"nm0000216";
-                HttpResponse<String> response = Unirest.get(host)
-                .header("x-rapidapi-host", "imdb8.p.rapidapi.com")
-                .header("x-rapidapi-key", "3ff559fc9dmsh90e7d601c0dcaa5p15bf2djsnd7c89f0e1067")
-                .asString();
-
-        System.out.println(response);
-        resp = HttpStatus.OK;
-
-//        if (repository.existsById(id)) {
-//            cr.data = repository.findById(id);
-//            cr.message = "Author with id: " + id;
-//            resp = HttpStatus.OK;
-//        } else {
-//            cr.data = null;
-//            cr.message = "Author not found";
-//            resp = HttpStatus.NOT_FOUND;
-//        }
+//    @GetMapping("/actor/movies")
+//    public ResponseEntity<CommonResponse> getActorsMovies(HttpServletRequest request) throws UnirestException {
+//        Command cmd = new Command(request);
 //
-//        cmd.setResult(resp);
-//        Logger.getInstance().logCommand(cmd);
-        return new ResponseEntity<>(cr, resp);
-    }
+//        //process
+//        CommonResponse cr = new CommonResponse();
+//        HttpStatus resp;
+//        String host = "https://rapidapi.p.rapidapi.com/actors/get-all-filmography?nconst="+"nm0000216";
+//                HttpResponse<String> response = Unirest.get(host)
+//                .header("x-rapidapi-host", "imdb8.p.rapidapi.com")
+//                .header("x-rapidapi-key", "3ff559fc9dmsh90e7d601c0dcaa5p15bf2djsnd7c89f0e1067")
+//                .asString();
+//
+//        JSONObject jsonObject = new JSONObject(response);
+//
+//        String[] names = JSONObject.getNames(jsonObject);
+//        System.out.println(" Names " +names[0]);
+//        JSONArray jsonArray = jsonObject.toJSONArray(new JSONArray("id"));
+//
+//
+////        for (int i = 0; i < jsonArray.length(); i++) {
+//            JSONObject jsonobject = jsonArray.getJSONObject(0);
+////            String title = jsonobject.getString("title");
+////            String year = jsonobject.getString("year");
+////            String genre = jsonobject.getString("genre");
+////            System.out.println(title + " " + year + " "+genre);
+//            System.out.println(jsonobject);
+////        }
+//        cr.data = response.getBody();
+//
+////        cr.data = response.getBody();
+//        System.out.println(response.getBody());
+//        resp = HttpStatus.OK;
+//
+////        if (repository.existsById(id)) {
+////            cr.data = repository.findById(id);
+////            cr.message = "Author with id: " + id;
+////            resp = HttpStatus.OK;
+////        } else {
+////            cr.data = null;
+////            cr.message = "Author not found";
+////            resp = HttpStatus.NOT_FOUND;
+////        }
+////
+////        cmd.setResult(resp);
+////        Logger.getInstance().logCommand(cmd);
+//        return new ResponseEntity<>(cr, resp);
+//    }
 }

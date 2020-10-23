@@ -15,14 +15,15 @@ import java.util.stream.Collectors;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
 public class Movie {
-
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer id;
-
     @Column(nullable = false)
     public String title;
-
+    @Column
+    public String genre;
+    @Column
+    public String releaseYear;
     @JsonGetter("actors")
     public List<String> actors() {
         return actors.stream()
@@ -30,19 +31,11 @@ public class Movie {
                     return "/actor/" + actor.id;
                 }).collect(Collectors.toList());
     }
-
-    @ManyToMany(fetch=FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "Movie_Actor",
-            joinColumns = { @JoinColumn(name = "movie_id") },
-            inverseJoinColumns = { @JoinColumn(name = "actor_id") }
+            joinColumns = { @JoinColumn(name = "movie_id")},
+            inverseJoinColumns = { @JoinColumn(name = "actor_id")}
     )
     public Set<Actor> actors = new HashSet<Actor>();
-
-    @Column
-    public String productionYear;
-
-    @Column
-    public String genre;
-
 }
