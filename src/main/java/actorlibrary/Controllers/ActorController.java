@@ -49,7 +49,11 @@ public class ActorController {
 
         CommonResponse cr = new CommonResponse();
         cr.data = repository.findAll();
-        cr.message = "All actors";
+        if(!(cr.data == null))
+            cr.message = "All actors";
+        else{
+            cr.message = "No actors found";
+        }
 
         HttpStatus resp = HttpStatus.OK;
 
