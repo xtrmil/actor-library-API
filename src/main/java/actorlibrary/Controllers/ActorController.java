@@ -102,6 +102,9 @@ public class ActorController {
             if (newActor.imdbURL != null) {
                 actor.imdbURL= newActor.imdbURL;
             }
+            if(newActor.movies != null){
+                actor.movies = newActor.movies;
+            }
 
             repository.save(actor);
 
@@ -115,26 +118,6 @@ public class ActorController {
         cmd.setResult(resp);
         return new ResponseEntity<>(cr, resp);
     }
-
-//    @DeleteMapping("/actor/{id}")
-//    public ResponseEntity<CommonResponse> deleteActor(HttpServletRequest request, @PathVariable Integer id) {
-//        Command cmd = new Command(request);
-//        CommonResponse cr = new CommonResponse();
-//        HttpStatus resp;
-//
-//        if(repository.existsById(id)) {
-//
-//            repository.deleteById(id);
-//            cr.message = "Deleted actor with id: " + id;
-//            resp = HttpStatus.OK;
-//        } else {
-//            cr.message = "Actor not found with id: " + id;
-//            resp = HttpStatus.NOT_FOUND;
-//        }
-//
-//        cmd.setResult(resp);
-//        return new ResponseEntity<>(cr, resp);
-//    }
 
     @DeleteMapping("/actor/{id}")
     public ResponseEntity<CommonResponse> deleteActor(HttpServletRequest request, @PathVariable Integer id) {

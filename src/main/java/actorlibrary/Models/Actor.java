@@ -3,8 +3,6 @@ package actorlibrary.Models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.net.URL;
@@ -41,6 +39,7 @@ public class Actor {
                     return "/api/v1/movie/" + movie.id;
                 }).collect(Collectors.toList());
     }
+
     @ManyToMany(mappedBy = "actors",fetch=FetchType.LAZY,cascade=CascadeType.REMOVE)
     public Set<Movie> movies = new HashSet<>();
 }

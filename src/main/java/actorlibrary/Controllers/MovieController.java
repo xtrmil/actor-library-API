@@ -82,6 +82,9 @@ public class MovieController {
             if (newMovie.genre != null) {
                 movie.genre = newMovie.genre;
             }
+            if(newMovie.actors != null){
+                movie.actors = newMovie.actors;
+            }
 
             repository.save(movie);
 
