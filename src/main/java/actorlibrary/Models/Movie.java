@@ -35,7 +35,7 @@ public class Movie {
                 }).collect(Collectors.toList());
     }
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade=CascadeType.REMOVE)
+    @ManyToMany(fetch = FetchType.LAZY,cascade=CascadeType.DETACH)
     @JoinTable(
             name = "Movie_Actor",
             joinColumns = { @JoinColumn(name = "movie_id")},
