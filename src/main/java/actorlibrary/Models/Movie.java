@@ -3,6 +3,9 @@ package actorlibrary.Models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +17,7 @@ import java.util.stream.Collectors;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
 public class Movie {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer id;
@@ -30,7 +34,8 @@ public class Movie {
                     return "/api/v1/actor/" + actor.id;
                 }).collect(Collectors.toList());
     }
-    @ManyToMany(fetch = FetchType.LAZY)
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade=CascadeType.REMOVE)
     @JoinTable(
             name = "Movie_Actor",
             joinColumns = { @JoinColumn(name = "movie_id")},

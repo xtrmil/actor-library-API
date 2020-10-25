@@ -3,6 +3,9 @@ package actorlibrary.Models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.net.URL;
 import java.time.LocalDate;
@@ -15,7 +18,6 @@ import java.util.stream.Collectors;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
 public class Actor {
-
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     public Integer id;
@@ -39,7 +41,6 @@ public class Actor {
                     return "/api/v1/movie/" + movie.id;
                 }).collect(Collectors.toList());
     }
-
-    @ManyToMany(mappedBy = "actors",fetch=FetchType.LAZY)
+    @ManyToMany(mappedBy = "actors",fetch=FetchType.LAZY,cascade=CascadeType.REMOVE)
     public Set<Movie> movies = new HashSet<>();
 }
