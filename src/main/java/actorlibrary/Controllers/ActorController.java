@@ -3,7 +3,6 @@ package actorlibrary.Controllers;
 import actorlibrary.Models.Actor;
 import actorlibrary.Models.CommonResponse;
 import actorlibrary.Repositories.ActorRepository;
-import actorlibrary.Repositories.MovieRepository;
 import actorlibrary.Utils.Command;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -18,7 +17,6 @@ public class ActorController {
 
     @Autowired
     private ActorRepository repository;
-    private MovieRepository movieRepository;
 
     @GetMapping("/")
     String hello(){
