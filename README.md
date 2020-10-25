@@ -1,7 +1,7 @@
 ## Actor Library
 
 
-Postgres database containing actors and movies with several api endpoints implemented.
+Postgres database containing actors and movies with several api endpoints implemented with hibernate.
 
 Deployed with Heroku.
 
