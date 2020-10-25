@@ -9,11 +9,10 @@ Deployed with Heroku.
 
 ### Usage
 
-Postman collection is included.
+Postman collection is included as json.
 
 
-
-https://desolate-brushlands-70183.herokuapp.com/
+https://desolate-brushlands-70183.herokuapp.com/api/v1/
 
 
 
