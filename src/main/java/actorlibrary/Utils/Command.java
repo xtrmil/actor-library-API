@@ -39,7 +39,6 @@ public class Command {
         out += (String.format("%1$-30s",requestPath));
         out += (String.format("%1$-10s",result));
 
-//        return out.toString();
         return out;
     }
 }

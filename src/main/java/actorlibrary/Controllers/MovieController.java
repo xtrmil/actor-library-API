@@ -1,15 +1,12 @@
 package actorlibrary.Controllers;
 
-import actorlibrary.Models.Actor;
 import actorlibrary.Models.CommonResponse;
 import actorlibrary.Models.Movie;
 import actorlibrary.Repositories.MovieRepository;
 import actorlibrary.Utils.Command;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
@@ -18,7 +15,7 @@ import java.util.*;
 public class MovieController {
 
     @Autowired
-    private MovieRepository movieRepository;
+    private MovieRepository repository;
 
     @GetMapping("/movie/all")
     public ResponseEntity<CommonResponse> getAllMovies(HttpServletRequest request){
@@ -26,7 +23,7 @@ public class MovieController {
         Command cmd = new Command(request);
         CommonResponse cr = new CommonResponse();
 
-        cr.data = movieRepository.findAll();
+        cr.data = repository.findAll();
         cr.message = "All Movies";
 
         HttpStatus resp = HttpStatus.OK;
@@ -39,8 +36,8 @@ public class MovieController {
         CommonResponse cr = new CommonResponse();
         HttpStatus resp;
 
-        if(movieRepository.existsById(id)) {
-            cr.data = movieRepository.findById(id);
+        if(repository.existsById(id)) {
+            cr.data = repository.findById(id);
             cr.message = "Movie not with id: " + id;
             resp = HttpStatus.OK;
         } else {
@@ -52,48 +49,49 @@ public class MovieController {
         return new ResponseEntity<>(cr, resp);
     }
 
-    @PutMapping("/movie/{id}")
-    public ResponseEntity<CommonResponse> replaceMovie(HttpServletRequest request, @RequestBody Movie newMovie, @PathVariable Integer id) {
-        Command cmd = new Command(request);
-        CommonResponse cr = new CommonResponse();
-        HttpStatus resp;
-
-        if(movieRepository.existsById(id)) {
-            Optional<Movie> movieRepo = movieRepository.findById(id);
-            Movie movie = movieRepo.get();
-
-            movie.title = newMovie.title;
-            movie.releaseYear = newMovie.releaseYear;
-            movie.genre = newMovie.genre;
-            movie.actors = new HashSet<Actor>();
-
-            for(Actor actor : newMovie.actors) {
-                movie.actors.add(actor);
-            }
-            movieRepository.save(movie);
-
-            cr.data = movie;
-            cr.message = "Replaced movie with id: " + movie.id;
-            resp = HttpStatus.OK;
-        } else {
-            cr.message = "Movie not found with id: " + id;
-            resp = HttpStatus.NOT_FOUND;
-        }
-
-        cmd.setResult(resp);
-        return new ResponseEntity<>(cr, resp);
-    }
-
     @PostMapping("/movie")
     public ResponseEntity<CommonResponse> addMovie(HttpServletRequest request, @RequestBody Movie movie){
         Command cmd = new Command(request);
         CommonResponse cr = new CommonResponse();
-        movie = movieRepository.save(movie);
+        movie = repository.save(movie);
 
         cr.data = movie;
         cr.message = "New Movie with id: " + movie.id;
 
         HttpStatus resp = HttpStatus.CREATED;
+        cmd.setResult(resp);
+        return new ResponseEntity<>(cr, resp);
+    }
+
+    @PatchMapping("/movie/{id}")
+    public ResponseEntity<CommonResponse> updateMovie(HttpServletRequest request, @RequestBody Movie newMovie, @PathVariable Integer id) {
+        Command cmd = new Command(request);
+        CommonResponse cr = new CommonResponse();
+        HttpStatus resp;
+
+        if (repository.existsById(id)) {
+            Optional<Movie> movieRepo = repository.findById(id);
+            Movie movie = movieRepo.get();
+
+            if (newMovie.title != null) {
+                movie.title = newMovie.title;
+            }
+            if (newMovie.releaseYear != null) {
+                movie.releaseYear = newMovie.releaseYear;
+            }
+            if (newMovie.genre != null) {
+                movie.genre = newMovie.genre;
+            }
+
+            repository.save(movie);
+
+            cr.data = movie;
+            cr.message = "Updated movie with id: " + movie.id;
+            resp = HttpStatus.OK;
+        } else {
+            cr.message = "Movie not found with id: " + id;
+            resp = HttpStatus.NOT_FOUND;
+        }
         cmd.setResult(resp);
         return new ResponseEntity<>(cr, resp);
     }
@@ -104,8 +102,8 @@ public class MovieController {
         CommonResponse cr = new CommonResponse();
         HttpStatus resp;
 
-        if(movieRepository.existsById(id)) {
-            movieRepository.deleteById(id);
+        if(repository.existsById(id)) {
+            repository.deleteById(id);
             cr.message = "Deleted movie with id: " + id;
             resp = HttpStatus.OK;
         } else {

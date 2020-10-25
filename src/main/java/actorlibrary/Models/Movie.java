@@ -3,7 +3,6 @@ package actorlibrary.Models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
@@ -28,7 +27,7 @@ public class Movie {
     public List<String> actors() {
         return actors.stream()
                 .map(actor -> {
-                    return "/actor/" + actor.id;
+                    return "/api/v1/actor/" + actor.id;
                 }).collect(Collectors.toList());
     }
     @ManyToMany(fetch = FetchType.LAZY)

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
 @Entity
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -35,7 +36,7 @@ public class Actor {
     public List<String> actors() {
         return movies.stream()
                 .map(movie-> {
-                    return "/movies/" + movie.id;
+                    return "/api/v1/movie/" + movie.id;
                 }).collect(Collectors.toList());
     }
 

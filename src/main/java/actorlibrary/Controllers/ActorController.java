@@ -4,17 +4,12 @@ import actorlibrary.Models.Actor;
 import actorlibrary.Models.CommonResponse;
 import actorlibrary.Repositories.ActorRepository;
 import actorlibrary.Utils.Command;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
 import java.util.Optional;
-
 
 @RestController
 @RequestMapping(value = "/api/v1")
@@ -25,7 +20,7 @@ public class ActorController {
 
     @GetMapping("/")
     String hello(){
-        return "Hello Hello";
+        return "Actor Library";
     }
 
     @GetMapping("/actor/all")
@@ -139,7 +134,7 @@ public class ActorController {
     }
 
     @GetMapping("/actor/{id}/movies")
-    public ResponseEntity<CommonResponse> getMoviesbyActor(HttpServletRequest request, @PathVariable("id") Integer id){
+    public ResponseEntity<CommonResponse> getMoviesByActorId(HttpServletRequest request, @PathVariable("id") Integer id){
         Command cmd = new Command(request);
         CommonResponse cr = new CommonResponse();
         HttpStatus resp;
