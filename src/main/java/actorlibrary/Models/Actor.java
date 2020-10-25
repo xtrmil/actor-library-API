@@ -1,16 +1,14 @@
 package actorlibrary.Models;
 
-
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
-
 import javax.persistence.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
+
 @Entity
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -42,6 +40,5 @@ public class Actor {
     }
 
     @ManyToMany(mappedBy = "actors",fetch=FetchType.LAZY)
-    public Set<Movie> movies = new HashSet<Movie>();
-
+    public Set<Movie> movies = new HashSet<>();
 }
