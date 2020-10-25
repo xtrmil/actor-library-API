@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "b55f66b9-e027-4245-a23e-6a74a84acecf",
+		"name": "ActorLibrary",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/actor/all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/actor/all",
+					"protocol": "https",
+					"host": [
+						"desolate-brushlands-70183",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"actor",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/actor/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/actor/6",
+					"protocol": "https",
+					"host": [
+						"desolate-brushlands-70183",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"actor",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/actor/{id}/movies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/actor/7/movies",
+					"protocol": "https",
+					"host": [
+						"desolate-brushlands-70183",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"actor",
+						"7",
+						"movies"
+					]
+				},
+				"description": "getMoviesByActorId"
+			},
+			"response": []
+		},
+		{
+			"name": "/actor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\":\"Dwayne\",\r\n    \"lastname\":\"Johnson\",\r\n    \"dateOfBirth\":\"1972-05-02\",\r\n    \"imdbURL\":\"https://www.imdb.com/name/nm0425005/?ref_=nv_sr_srsg_0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/actor",
+					"protocol": "https",
+					"host": [
+						"desolate-brushlands-70183",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"actor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/actor/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/actor/7",
+					"protocol": "https",
+					"host": [
+						"desolate-brushlands-70183",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"actor",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movie/all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/movie/all",
+					"protocol": "https",
+					"host": [
+						"desolate-brushlands-70183",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movie/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/movie/1",
+					"protocol": "https",
+					"host": [
+						"desolate-brushlands-70183",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movie/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\":\"New Name\",\r\n\"genre\":\"New Genre\",\r\n\"releaseYear\":\"New Year\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/movie/",
+					"protocol": "https",
+					"host": [
+						"desolate-brushlands-70183",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						""
+					]
+				},
+				"description": "Add new movie\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "/movie/",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\":\"New Name\",\r\n\"genre\":\"New Genre\",\r\n\"releaseYear\":\"New Year\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/movie/5",
+					"protocol": "https",
+					"host": [
+						"desolate-brushlands-70183",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						"5"
+					]
+				},
+				"description": "Update a excisting movie"
+			},
+			"response": []
+		},
+		{
+			"name": "/movie/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/movie/",
+					"protocol": "https",
+					"host": [
+						"desolate-brushlands-70183",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
