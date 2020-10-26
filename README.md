@@ -12,7 +12,7 @@ Deployed with Heroku.
 Postman collection is included as json.
 
 
-https://desolate-brushlands-70183.herokuapp.com/api/v1/
+https://actor-api.herokuapp.com/api/v1/
 
 
 
