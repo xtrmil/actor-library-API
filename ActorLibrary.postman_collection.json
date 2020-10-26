@@ -11,10 +11,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/actor/all",
+					"raw": "https://actor-api.herokuapp.com/api/v1/actor/all",
 					"protocol": "https",
 					"host": [
-						"desolate-brushlands-70183",
+						"actor-api",
 						"herokuapp",
 						"com"
 					],
@@ -34,10 +34,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/actor/6",
+					"raw": "https://actor-api.herokuapp.com/api/v1/actor/6",
 					"protocol": "https",
 					"host": [
-						"desolate-brushlands-70183",
+						"actor-api",
 						"herokuapp",
 						"com"
 					],
@@ -57,10 +57,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/actor/7/movies",
+					"raw": "https://actor-api.herokuapp.com/api/v1/actor/7/movies",
 					"protocol": "https",
 					"host": [
-						"desolate-brushlands-70183",
+						"actor-api",
 						"herokuapp",
 						"com"
 					],
@@ -91,10 +91,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/actor",
+					"raw": "https://actor-api.herokuapp.com/api/v1/actor",
 					"protocol": "https",
 					"host": [
-						"desolate-brushlands-70183",
+						"actor-api",
 						"herokuapp",
 						"com"
 					],
@@ -113,10 +113,10 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/actor/7",
+					"raw": "https://actor-api.herokuapp.com/api/v1/actor/7",
 					"protocol": "https",
 					"host": [
-						"desolate-brushlands-70183",
+						"actor-api",
 						"herokuapp",
 						"com"
 					],
@@ -136,10 +136,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/movie/all",
+					"raw": "https://actor-api.herokuapp.com/api/v1/movie/all",
 					"protocol": "https",
 					"host": [
-						"desolate-brushlands-70183",
+						"actor-api",
 						"herokuapp",
 						"com"
 					],
@@ -159,10 +159,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/movie/1",
+					"raw": "https://actor-api.herokuapp.com/api/v1/movie/1",
 					"protocol": "https",
 					"host": [
-						"desolate-brushlands-70183",
+						"actor-api",
 						"herokuapp",
 						"com"
 					],
@@ -191,10 +191,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/movie/",
+					"raw": "https://actor-api.herokuapp.com/api/v1/movie/",
 					"protocol": "https",
 					"host": [
-						"desolate-brushlands-70183",
+						"actor-api",
 						"herokuapp",
 						"com"
 					],
@@ -224,10 +224,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/movie/5",
+					"raw": "https://actor-api.herokuapp.com/api/v1/movie/5",
 					"protocol": "https",
 					"host": [
-						"desolate-brushlands-70183",
+						"actor-api",
 						"herokuapp",
 						"com"
 					],
@@ -248,10 +248,10 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://desolate-brushlands-70183.herokuapp.com/api/v1/movie/",
+					"raw": "https://actor-api.herokuapp.com/api/v1/movie/",
 					"protocol": "https",
 					"host": [
-						"desolate-brushlands-70183",
+						"actor-api",
 						"herokuapp",
 						"com"
 					],
